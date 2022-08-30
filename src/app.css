@@ -1,0 +1,37 @@
+@import url('https://rsms.me/inter/inter.css');
+
+:root {
+	font-family: Inter, Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+		Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	color: #f1f1f1;
+
+	--app-height: 100vh;
+}
+
+html {
+	height: var(—-app-height);
+	background-color: #560bad;
+}
+
+body {
+	background-color: #560bad;
+	background-color: #7209b7;
+	margin: 10px;
+	height: calc(100% - 20px);
+	border-radius: 1rem;
+	overflow: hidden;
+}
+
+.btn {
+	font-family: Inter, sans-serif;
+	background-color: #f1f1f1;
+	border: none;
+	border-radius: 0.4rem;
+	height: fit-content;
+	width: fit-content;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	font-weight: 600;
+	color: #333;
+	box-shadow: 1px 2px 7px #333;
+}
