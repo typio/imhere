@@ -27,6 +27,8 @@
 	}}
 	on:keydown={(e) => {
 		let { key } = e;
+        console.log(key);
+        
 		if (keyboardType === 'digit') {
 			if (!isNaN(parseInt(key))) {
 				if (activeCodeIdx < codeLength - 1) {
@@ -36,7 +38,6 @@
 				} else if (activeCodeIdx === codeLength - 1) {
 					code[activeCodeIdx] = e.key;
 					keyboardType = 'alpha';
-					// document.getElementById(`name-entry`)?.focus();
 					setTimeout(() => {
 						document.getElementById(`name-entry`)?.focus();
 					}, 10);
