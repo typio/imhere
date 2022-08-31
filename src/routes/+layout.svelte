@@ -4,5 +4,4 @@
 
 <slot />
 
-<style>
-</style>
+<style></style>

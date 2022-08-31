@@ -8,7 +8,7 @@
 	let interval: NodeJS.Timer;
 
 	const sendKey = (key: string) => {
-        dispatch('key', {
+		dispatch('key', {
 			text: key
 		});
 	};
@@ -22,24 +22,21 @@
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('1');
-				}}
-				>1</button
+				}}>1</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('2');
-				}}
-				>2</button
+				}}>2</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('3');
-				}}
-				>3</button
+				}}>3</button
 			>
 		</div>
 		<div class="keyboard-row">
@@ -48,24 +45,21 @@
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('4');
-				}}
-				>4</button
+				}}>4</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('5');
-				}}
-				>5</button
+				}}>5</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('6');
-				}}
-				>6</button
+				}}>6</button
 			>
 		</div>
 		<div class="keyboard-row">
@@ -74,24 +68,21 @@
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('7');
-				}}
-				>7</button
+				}}>7</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('8');
-				}}
-				>8</button
+				}}>8</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('9');
-				}}
-				>9</button
+				}}>9</button
 			>
 		</div>
 		<div class="keyboard-row">
@@ -101,22 +92,19 @@
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('0');
-				}}
-				>0</button
+				}}>0</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
-                    sendKey('Backspace');
-                    interval = setInterval(sendKey, 100, 'Backspace')
+					sendKey('Backspace');
+					interval = setInterval(sendKey, 100, 'Backspace');
 				}}
-
-                on:mouseup={(e)=>{
-                    e.preventDefault();
-                    clearInterval(interval)
-                }}
-				>⌫</button
+				on:mouseup={(e) => {
+					e.preventDefault();
+					clearInterval(interval);
+				}}>⌫</button
 			>
 		</div>
 	{:else if type === 'alpha'}
@@ -126,80 +114,70 @@
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('Q');
-				}}
-				>Q</button
+				}}>Q</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('W');
-				}}
-				>W</button
+				}}>W</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('E');
-				}}
-				>E</button
+				}}>E</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('R');
-				}}
-				>R</button
+				}}>R</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('T');
-				}}
-				>T</button
+				}}>T</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('Y');
-				}}
-				>Y</button
+				}}>Y</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('U');
-				}}
-				>U</button
+				}}>U</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('I');
-				}}
-				>I</button
+				}}>I</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('O');
-				}}
-				>O</button
+				}}>O</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('P');
-				}}
-				>P</button
+				}}>P</button
 			>
 		</div>
 		<div class="keyboard-row">
@@ -209,72 +187,63 @@
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('A');
-				}}
-				>A</button
+				}}>A</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('S');
-				}}
-				>S</button
+				}}>S</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('D');
-				}}
-				>D</button
+				}}>D</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('F');
-				}}
-				>F</button
+				}}>F</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('G');
-				}}
-				>G</button
+				}}>G</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('H');
-				}}
-				>H</button
+				}}>H</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('J');
-				}}
-				>J</button
+				}}>J</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('K');
-				}}
-				>K</button
+				}}>K</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('L');
-				}}
-				>L</button
+				}}>L</button
 			>
 			<div class="keyboard-cell-half" />
 		</div>
@@ -286,56 +255,49 @@
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('Z');
-				}}
-				>Z</button
+				}}>Z</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('X');
-				}}
-				>X</button
+				}}>X</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('C');
-				}}
-				>C</button
+				}}>C</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('V');
-				}}
-				>V</button
+				}}>V</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('B');
-				}}
-				>B</button
+				}}>B</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('N');
-				}}
-				>N</button
+				}}>N</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey('M');
-				}}
-				>M</button
+				}}>M</button
 			>
 			<div class="keyboard-cell-half" />
 			<div class="keyboard-cell-half" />
@@ -347,22 +309,19 @@
 				on:mousedown={(e) => {
 					e.preventDefault();
 					sendKey(' ');
-				}}
-				>SPACE</button
+				}}>SPACE</button
 			>
 			<button
 				class="keyboard-cell btn"
 				on:mousedown={(e) => {
 					e.preventDefault();
-                    sendKey('Backspace');
-                    interval = setInterval(sendKey, 100, 'Backspace')
+					sendKey('Backspace');
+					interval = setInterval(sendKey, 100, 'Backspace');
 				}}
-
-                on:mouseup={(e)=>{
-                    e.preventDefault();
-                    clearInterval(interval)
-                }}
-				>⌫</button
+				on:mouseup={(e) => {
+					e.preventDefault();
+					clearInterval(interval);
+				}}>⌫</button
 			>
 		</div>
 	{/if}
@@ -380,6 +339,7 @@
 		justify-content: space-evenly;
 		align-items: center;
 		margin: 0 0 8px 0;
+		touch-action: manipulation;
 	}
 
 	.keyboard-cell {

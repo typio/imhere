@@ -34,4 +34,10 @@ body {
 	font-weight: 600;
 	color: #333;
 	box-shadow: 1px 2px 7px #333;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+	
 }

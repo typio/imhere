@@ -27,8 +27,8 @@
 	}}
 	on:keydown={(e) => {
 		let { key } = e;
-        console.log(key);
-        
+		console.log(key);
+
 		if (keyboardType === 'digit') {
 			if (!isNaN(parseInt(key))) {
 				if (activeCodeIdx < codeLength - 1) {
@@ -165,13 +165,17 @@
 		max-width: 3rem;
 		height: 4rem;
 		flex: 1;
-		outline: solid 0.4rem #480ca8;
-		border-radius: 1rem;
-		margin: 0 1.2rem;
+		border: solid 0.4rem #480ca8;
+
+		-webkit-border-radius: 15px;
+
+		border-radius: 20px;
+		margin: 0 0.6rem;
 	}
 
 	.code-entry-cell:focus {
-		outline: solid 0.4rem rgba(230, 230, 230, 0.3);
+		border: solid 0.4rem rgba(230, 230, 230, 0.3);
+		outline: none;
 	}
 
 	.code-entry-cell p {
@@ -194,26 +198,30 @@
 	}
 
 	.name-entry:focus {
-		/* background-color: #b5179e; */
 		outline: none;
 	}
 
-    .name-entry p {
-		outline: solid 0.4rem rgba(230, 230, 230, 0.3);
-		border-radius: 1rem;
+	.name-entry p {
+		border: solid 0.4rem rgba(230, 230, 230, 0.3);
+		border-radius: 20px;
 
-        text-align: center;
-        width:100%;
+		text-align: center;
+		width: 80%;
 		height: 4rem;
-        line-height: 4rem;
-        margin:0;
-        font-size: 1.6rem;
+		line-height: 4rem;
+		margin: 0;
+		font-size: 1.6rem;
+		font-weight: 500;
 	}
 
 	.here-btn {
 		background: linear-gradient(145deg, #f72585, #b5179e);
 		margin: 2vh auto 0 auto;
 		color: #f1f1f1;
+		font-size: 1.4rem;
+		font-weight: 500;
+		width: 100px;
+		height: 50px;
 	}
 
 	.keyboard-wrapper {
