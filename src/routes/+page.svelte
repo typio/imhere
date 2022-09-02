@@ -195,6 +195,7 @@
 		flex-direction: row;
 		justify-content: center;
 		align-self: flex-start;
+		
 	}
 
 	.name-entry:focus {
@@ -212,6 +213,10 @@
 		margin: 0;
 		font-size: 1.6rem;
 		font-weight: 500;
+
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.here-btn {

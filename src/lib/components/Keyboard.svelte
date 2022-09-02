@@ -104,6 +104,10 @@
 				on:mouseup={(e) => {
 					e.preventDefault();
 					clearInterval(interval);
+				}}
+				on:mouseleave={(e) => {
+					e.preventDefault();
+					clearInterval(interval);
 				}}>⌫</button
 			>
 		</div>
@@ -319,6 +323,10 @@
 					interval = setInterval(sendKey, 100, 'Backspace');
 				}}
 				on:mouseup={(e) => {
+					e.preventDefault();
+					clearInterval(interval);
+				}}
+				on:mouseleave={(e) => {
 					e.preventDefault();
 					clearInterval(interval);
 				}}>⌫</button
