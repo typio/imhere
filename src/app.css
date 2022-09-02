@@ -22,6 +22,17 @@ body {
 	overflow: hidden;
 }
 
+.content {
+	height: calc(var(--app-height) - 20px);
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	width: 100%;
+	max-width: 500px;
+	margin: auto;
+	flex-grow: 1;
+}
+
 .btn {
 	font-family: Inter, sans-serif;
 	background-color: #f1f1f1;
@@ -39,5 +50,4 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
-	
 }

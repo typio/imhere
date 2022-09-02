@@ -1,5 +1,6 @@
 <script>
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 	import Keyboard from '$lib/components/Keyboard.svelte';
 
 	let code = ['', '', '', ''];
@@ -10,21 +11,12 @@
 
 	let name = '';
 
-	const appHeight = () => {
-		const doc = document.documentElement;
-		doc.style.setProperty('--app-height', `${window.innerHeight}px`);
-	};
-
 	if (browser) {
-		appHeight();
 		document.getElementById(`code-0`)?.focus();
 	}
 </script>
 
 <svelte:window
-	on:resize={() => {
-		appHeight();
-	}}
 	on:keydown={(e) => {
 		let { key } = e;
 		console.log(key);
@@ -140,17 +132,6 @@
 		text-align: center;
 	}
 
-	.content {
-		height: calc(var(--app-height) - 20px);
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		width: 100%;
-		max-width: 500px;
-		margin: auto;
-		flex-grow: 1;
-	}
-
 	.code-entry {
 		width: 100%;
 		height: fit-content;
@@ -195,7 +176,6 @@
 		flex-direction: row;
 		justify-content: center;
 		align-self: flex-start;
-		
 	}
 
 	.name-entry:focus {
