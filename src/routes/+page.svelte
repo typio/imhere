@@ -1,11 +1,11 @@
 <script>
 	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
 	import Keyboard from '$lib/components/Keyboard.svelte';
+	import { codeLength } from '$lib/helper';
 
-	let code = ['', '', '', ''];
+	let code = new Array(codeLength).fill('');
+
 	let activeCodeIdx = 0;
-	let codeLength = code.length;
 
 	let keyboardType = 'digit';
 

@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
+	import { goto, prefetch } from '$app/navigation';
 	$: teacher_mode = $page.url.pathname === '/create' ? true : false;
 </script>
 
@@ -8,6 +8,9 @@
 	class="mode-btn btn"
 	on:click={() => {
 		goto(teacher_mode ? '/' : '/create');
+	}}
+	on:mouseenter={() => {
+		prefetch(teacher_mode ? '/' : '/create');
 	}}>{teacher_mode ? 'Student?' : 'Teacher?'}</button
 >
 
@@ -16,5 +19,6 @@
 		position: absolute;
 		top: 30px;
 		left: 30px;
+		width: 110px;
 	}
 </style>
