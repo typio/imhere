@@ -6,24 +6,26 @@ import { codeLength } from '$lib/helper'
 
 import type { RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({ request, url: { searchParams } }) => {
-    const teacherId = cookie.parse(request.headers.get('cookie') || '').teacherId
+export const GET: RequestHandler = async ({ request, url }) => {
 
-    const type = searchParams.get('type') ?? 'checkExists'
-    const roomCode = searchParams.get('roomCode') ?? ''
+    const teacherId = cookie.parse(request.headers.get('cookie') || '').teacherId
+    const studentId = cookie.parse(request.headers.get('cookie') || '').studentId
+
+    const roomCode = url.searchParams.get('roomCode') ?? ''
 
     const room = (await roomRepository.search().where('roomCode').eq(roomCode).return.all())[0]
 
     const getterIsRoomOwner = room?.teacherId === teacherId
+    const getterIsStudent = room?.students.findIndex((student) => studentId === student.split('/')[0]) !== -1
 
-    switch (type) {
-        case 'checkExists':
-            return new Response(JSON.stringify({ exists: room?.entityId !== undefined }), { status: 200 })
-        case 'getRoom':
-            return new Response(JSON.stringify(getterIsRoomOwner ? { room } : { exists: room?.entityId !== undefined }), { status: 200 })
-        default:
-            return new Response(JSON.stringify({ message: 'invalid type param' }), { status: 400 })
-    }
+    return new Response(
+        JSON.stringify({
+            room: (getterIsRoomOwner ? room : undefined),
+            exists: ((room?.roomCode !== undefined) ? true : false),
+            isStudent: (getterIsStudent ? true : false),
+        }
+        ),
+        { status: 200 })
 }
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -91,6 +93,10 @@ export const PATCH: RequestHandler = async ({ request }) => {
     const studentId = cookie.parse(request.headers.get('cookie') || '').studentId
 
     let room = (await roomRepository.search().where('roomCode').eq(code).return.all())[0]
+
+    if (room?.students === undefined)
+        return new Response(JSON.stringify({ message: 'didn\'t find room' }), { status: 404 })
+
     let studentExists = false
     room.students.forEach(student => {
         if (student.split('/')[0] === studentId) studentExists = true

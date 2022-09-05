@@ -66,12 +66,12 @@
 				max-width: 100%;
 			}
 		</style>
-		<!-- {:else if data?.exists === true}
-		Hello -->
+	{:else if data?.isStudent === true}
+		<h2 class="msg">You've successfully joined the room</h2>
 	{:else}
-		<h2>This room has expired</h2>
+		<h2 class="msg">This room has expired</h2>
 		<button
-			class="btn"
+			class="btn home-btn"
 			on:click={() => {
 				goto('/');
 			}}>Go Home</button
@@ -128,5 +128,13 @@
 
 	.student-name:hover {
 		text-decoration: line-through;
+	}
+
+	.msg {
+		margin: 5vmin 0;
+	}
+
+	.home-btn {
+		margin: 0 auto;
 	}
 </style>

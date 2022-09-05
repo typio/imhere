@@ -12,13 +12,16 @@
 
 	let name = '';
 
+	let badCode = false;
+	let failedSumbit = false;
+
 	if (browser) {
 		document.getElementById(`code-0`)?.focus();
 	}
 
 	const checkValidRoomCode = async (roomCode: string): Promise<boolean> => {
 		const res = await fetch(
-			`${$page.url.origin}/create/room?type=checkExists&roomCode=${roomCode}`,
+			`${$page.url.origin}/create/room?roomCode=${roomCode}`,
 			{
 				method: 'GET'
 			}
@@ -27,7 +30,7 @@
 		return exists;
 	};
 
-	const submitHere = async () => {
+	const submitHere = async (): Promise<boolean> => {
 		const res = await fetch(`${$page.url.origin}/create/room`, {
 			method: 'PATCH',
 			body: JSON.stringify({
@@ -35,7 +38,9 @@
 				name
 			})
 		});
-		console.log(await res.json());
+		const room = await res.json();
+		if (room?.roomCode !== undefined) return true;
+		else return false;
 	};
 </script>
 
@@ -58,7 +63,10 @@
 								document.getElementById(`name-entry`)?.focus();
 							}, 10);
 						} else {
-							console.log('invalid code');
+							badCode = true;
+							setTimeout(() => {
+								badCode = false;
+							}, 1000);
 						}
 					})();
 				}
@@ -110,7 +118,7 @@
 		<h1>Enter PIN</h1>
 		{#each code as _, i}
 			<div
-				class="code-entry-cell"
+				class="code-entry-cell {badCode ? 'shaker' : ''}"
 				id="code-{i}"
 				tabindex="0"
 				on:focus={() => {
@@ -138,7 +146,19 @@
 				{name}
 			</p>
 		</div>
-		<button class="btn here-btn" tabindex="0" on:click={submitHere}>Here!</button
+		<button
+			class="btn here-btn {failedSumbit ? 'shaker' : ''}"
+			tabindex="0"
+			on:click={async () => {
+				if (!(await submitHere())) {
+					failedSumbit = true;
+					setTimeout(() => {
+						failedSumbit = false;
+					}, 1000);
+				} else {
+					window.location.href = `/${code.join('')}`;
+				}
+			}}>Here!</button
 		>
 	{/if}
 	<div class="keyboard-wrapper">
@@ -250,5 +270,63 @@
 		text-align: center;
 
 		position: absolute;
+	}
+
+	.shaker:nth-of-type(1) {
+		animation-name: shake;
+		animation-duration: 0.25s;
+	}
+
+	.shaker:nth-of-type(2) {
+		animation-name: shake;
+		animation-duration: 0.3s;
+		animation-direction: alternate;
+	}
+
+	.shaker:nth-of-type(3) {
+		animation-name: shake;
+		animation-duration: 0.2s;
+	}
+
+	.shaker:nth-of-type(4) {
+		animation-name: shake;
+		animation-duration: 0.275s;
+		animation-direction: alternate;
+	}
+
+	@keyframes shake {
+		0% {
+			transform: translate(1px, 1px) rotate(0deg);
+		}
+		10% {
+			transform: translate(-1px, -2px) rotate(-1deg);
+		}
+		20% {
+			transform: translate(-3px, 0px) rotate(1deg);
+		}
+		30% {
+			transform: translate(3px, 2px) rotate(0deg);
+		}
+		40% {
+			transform: translate(1px, -1px) rotate(1deg);
+		}
+		50% {
+			transform: translate(-1px, 2px) rotate(-1deg);
+		}
+		60% {
+			transform: translate(-3px, 1px) rotate(0deg);
+		}
+		70% {
+			transform: translate(3px, 1px) rotate(-1deg);
+		}
+		80% {
+			transform: translate(-1px, -1px) rotate(1deg);
+		}
+		90% {
+			transform: translate(1px, 2px) rotate(0deg);
+		}
+		100% {
+			transform: translate(1px, -2px) rotate(-1deg);
+		}
 	}
 </style>
