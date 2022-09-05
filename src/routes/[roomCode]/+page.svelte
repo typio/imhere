@@ -33,6 +33,21 @@
 			clearInterval(interval);
 		}
 	}, 100);
+
+	const downloadToFile = (
+		content: string,
+		filename: string,
+		contentType: string
+	) => {
+		const a = document.createElement('a');
+		const file = new Blob([content], { type: contentType });
+
+		a.href = URL.createObjectURL(file);
+		a.download = filename;
+		a.click();
+
+		URL.revokeObjectURL(a.href);
+	};
 </script>
 
 <div class="content">
@@ -61,6 +76,26 @@
 				</li>
 			{/each}
 		</ul>
+		<div class="save-btns">
+			<button
+				class="btn clip-btn"
+				on:click={() => {
+					navigator.clipboard.writeText(
+						data?.room?.students.map((student) => student.split('/')[1])
+					);
+				}}>Copy Names to Clipboard</button
+			>
+			<button
+				class="btn save-btn"
+				on:click={() => {
+					downloadToFile(
+						data?.room?.students.map((student) => student.split('/')[1]),
+						`Attendance-${new Date().toLocaleString('en-US')}`,
+						'text/plain'
+					);
+				}}>Save Names to Text File</button
+			>
+		</div>
 		<style>
 			.content {
 				max-width: 100%;
@@ -102,15 +137,16 @@
 	}
 
 	.student-names {
-		max-width: 1560px;
-		display: grid;
+		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 		max-height: 60vh;
-		margin: 0 0;
+		margin: auto 0 0 0;
 		list-style: none;
 		-webkit-box-pack: center;
 		justify-content: center;
+		padding: 0;
+		height: 40vh;
 	}
 
 	.student-name {
@@ -120,7 +156,7 @@
 		height: 5vmin;
 
 		text-align: center;
-		margin: 4px;
+		margin: 10px;
 		/* 
 		background: rgba(0, 0, 0, 0.2);
 		border-radius: 0.4rem; */
@@ -136,5 +172,16 @@
 
 	.home-btn {
 		margin: 0 auto;
+	}
+
+	.save-btns {
+		position: absolute;
+		bottom: 30px;
+		width: 100%;
+		text-align: center;
+	}
+
+	.save-btns .btn {
+		margin: 10px 20px;
 	}
 </style>
