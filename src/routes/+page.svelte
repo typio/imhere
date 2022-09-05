@@ -193,13 +193,12 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		padding: 2vh 0;
 		align-self: flex-start;
 	}
 
 	.name-entry,
 	.code-entry {
-		margin: 50px 0 0 0;
+		margin: 75px 0 0 0;
 	}
 
 	.code-entry-cell {
@@ -261,13 +260,12 @@
 
 	.here-btn {
 		background: linear-gradient(145deg, #f72585, #b5179e);
-		margin: 2vh auto 0 auto;
+		margin: 50px auto 400px auto;
 		color: #f1f1f1;
 		font-size: 1.4rem;
 		font-weight: 500;
 		width: 100px;
 		height: 50px;
-		margin-bottom: 400px;
 	}
 
 	.keyboard-wrapper {
