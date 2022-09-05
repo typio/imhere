@@ -118,25 +118,26 @@
 />
 
 <div class="content">
-	<div class="code-entry">
-		<h1>Enter PIN</h1>
-		{#each code as _, i}
-			<div
-				class="code-entry-cell {badCode ? 'shaker' : ''}"
-				id="code-{i}"
-				tabindex="0"
-				on:focus={() => {
-					keyboardType = 'digit';
-					activeCodeIdx = i;
-				}}
-			>
-				<p>{code[i]}</p>
-			</div>
-		{/each}
-	</div>
+	{#if keyboardType === 'digit'}
+		<div class="code-entry">
+			<h1>Enter PIN</h1>
+			{#each code as _, i}
+				<div
+					class="code-entry-cell {badCode ? 'shaker' : ''}"
+					id="code-{i}"
+					tabindex="0"
+					on:focus={() => {
+						keyboardType = 'digit';
+						activeCodeIdx = i;
+					}}
+				>
+					<p>{code[i]}</p>
+				</div>
+			{/each}
+		</div>
 
-	<!-- {#if code.filter((el) => el !== '').length === codeLength} -->
-	{#if keyboardType === 'alpha'}
+		<!-- {#if code.filter((el) => el !== '').length === codeLength} -->
+	{:else if keyboardType === 'alpha'}
 		<div
 			class="name-entry"
 			id="name-entry"
@@ -194,6 +195,11 @@
 		justify-content: center;
 		padding: 2vh 0;
 		align-self: flex-start;
+	}
+
+	.name-entry,
+	.code-entry {
+		margin: 50px 0 0 0;
 	}
 
 	.code-entry-cell {

@@ -51,7 +51,9 @@
 </script>
 
 <svelte:head>
-	<title>Room #{data?.room.roomCode}</title>
+	<title
+		>Room{data?.room?.roomCode ? ` #${data?.room?.roomCode}` : ''}</title
+	>
 </svelte:head>
 
 <div class="content">
@@ -107,6 +109,12 @@
 		</style>
 	{:else if data?.isStudent === true}
 		<h2 class="msg">You've successfully joined the room</h2>
+		<button
+			class="btn home-btn"
+			on:click={() => {
+				goto('/');
+			}}>Go Home</button
+		>
 	{:else}
 		<h2 class="msg">This room has expired</h2>
 		<button
@@ -129,7 +137,7 @@
 		font-size: 16vmin;
 		line-height: 18vmin;
 		height: 18vmin;
-		margin: 50px 0 0 0;
+		margin: 70px 0 0 0;
 	}
 
 	.room-time {
@@ -171,7 +179,7 @@
 	}
 
 	.msg {
-		margin: 5vmin 0;
+		margin: 70px 0 0 0;
 	}
 
 	.home-btn {

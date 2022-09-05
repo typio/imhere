@@ -6,8 +6,10 @@
 	<title>{$page.status}</title>
 </svelte:head>
 
-<h1>{$page.status}</h1>
-<p>{$page.error.message}</p>
+<div class="content">
+	<h1>{$page.status}</h1>
+	<p>{$page.error.message}</p>
+</div>
 
 <style>
 	h1 {
