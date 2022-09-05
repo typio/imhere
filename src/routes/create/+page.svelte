@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	let TTLInSeconds = 60 * 5;
+	let TTLInSeconds = 60 * 15;
 
 	const createRoom = async () => {
-		const res = await fetch('/create/createRoom', {
+		const res = await fetch('/create/room', {
 			method: 'POST',
 			body: JSON.stringify({
 				TTLInSeconds

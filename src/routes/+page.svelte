@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import { codeLength } from '$lib/helper';
+	import { page } from '$app/stores';
 
 	let code = new Array(codeLength).fill('');
 
@@ -14,13 +15,33 @@
 	if (browser) {
 		document.getElementById(`code-0`)?.focus();
 	}
+
+	const checkValidRoomCode = async (roomCode: string): Promise<boolean> => {
+		const res = await fetch(
+			`${$page.url.origin}/create/room?type=checkExists&roomCode=${roomCode}`,
+			{
+				method: 'GET'
+			}
+		);
+		const { exists }: { exists: boolean } = await res.json();
+		return exists;
+	};
+
+	const submitHere = async () => {
+		const res = await fetch(`${$page.url.origin}/create/room`, {
+			method: 'PATCH',
+			body: JSON.stringify({
+				code: code.join(''),
+				name
+			})
+		});
+		console.log(await res.json());
+	};
 </script>
 
 <svelte:window
 	on:keydown={(e) => {
 		let { key } = e;
-		console.log(key);
-
 		if (keyboardType === 'digit') {
 			if (!isNaN(parseInt(key))) {
 				if (activeCodeIdx < codeLength - 1) {
@@ -29,10 +50,17 @@
 					document.getElementById(`code-${activeCodeIdx}`)?.focus();
 				} else if (activeCodeIdx === codeLength - 1) {
 					code[activeCodeIdx] = e.key;
-					keyboardType = 'alpha';
-					setTimeout(() => {
-						document.getElementById(`name-entry`)?.focus();
-					}, 10);
+
+					(async () => {
+						if (await checkValidRoomCode(code.join(''))) {
+							keyboardType = 'alpha';
+							setTimeout(() => {
+								document.getElementById(`name-entry`)?.focus();
+							}, 10);
+						} else {
+							console.log('invalid code');
+						}
+					})();
 				}
 			} else if (key === 'Backspace') {
 				if (activeCodeIdx > 0) {
@@ -58,8 +86,8 @@
 			if (key === 'Backspace') {
 				if (name === '') {
 					keyboardType = 'digit';
-					code[activeCodeIdx] = '';
-					activeCodeIdx--;
+					// code[activeCodeIdx] = '';
+					// activeCodeIdx--;
 					document.getElementById(`code-${activeCodeIdx}`)?.focus();
 				} else {
 					name = name.slice(0, name.length - 1);
@@ -95,7 +123,8 @@
 		{/each}
 	</div>
 
-	{#if code.filter((el) => el !== '').length === codeLength}
+	<!-- {#if code.filter((el) => el !== '').length === codeLength} -->
+	{#if keyboardType === 'alpha'}
 		<div
 			class="name-entry"
 			id="name-entry"
@@ -109,7 +138,8 @@
 				{name}
 			</p>
 		</div>
-		<button class="btn here-btn" tabindex="0">Here!</button>
+		<button class="btn here-btn" tabindex="0" on:click={submitHere}>Here!</button
+		>
 	{/if}
 	<div class="keyboard-wrapper">
 		<!-- svelte-ignore missing-declaration -->
@@ -207,10 +237,18 @@
 		font-weight: 500;
 		width: 100px;
 		height: 50px;
+		margin-bottom: 400px;
 	}
 
 	.keyboard-wrapper {
-		width: 100%;
-		align-self: flex-end;
+		max-width: 540px;
+		margin-left: auto;
+		margin-right: auto;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		text-align: center;
+
+		position: absolute;
 	}
 </style>
