@@ -50,6 +50,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Room #{data?.room.roomCode}</title>
+</svelte:head>
+
 <div class="content">
 	{#if data?.room !== undefined}
 		<h1 class="room-code">{data?.room.roomCode}</h1>

@@ -44,6 +44,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Im Here!</title>
+</svelte:head>
+
 <svelte:window
 	on:keydown={(e) => {
 		let { key } = e;

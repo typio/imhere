@@ -14,6 +14,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Create Room!</title>
+</svelte:head>
+
 <div class="content">
 	<div class="create-btns">
 		<div class="ttl-btns">
