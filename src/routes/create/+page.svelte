@@ -76,6 +76,5 @@
 
 	.create-btn {
 		margin: 0 auto 20vh auto;
-
 	}
 </style>

@@ -7,7 +7,7 @@
 	<button
 		class="mode-btn btn"
 		on:click={() => {
-			goto('/create');
+			window.location.href = '/create';
 		}}
 		on:mouseenter={() => {
 			prefetch('/create');
@@ -19,13 +19,25 @@
 	<button
 		class="mode-btn btn"
 		on:click={() => {
-			goto('/');
+			window.location.href = '/';
 		}}
 		on:mouseenter={() => {
 			prefetch('/');
 		}}
 	>
 		Student?
+	</button>
+{:else}
+	<button
+		class="mode-btn btn"
+		on:click={() => {
+			window.location.href = '/';
+		}}
+		on:mouseenter={() => {
+			prefetch('/');
+		}}
+	>
+		Home
 	</button>
 {/if}
 

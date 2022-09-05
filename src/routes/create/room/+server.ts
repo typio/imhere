@@ -16,7 +16,7 @@ export const GET: RequestHandler = async ({ request, url }) => {
     const room = (await roomRepository.search().where('roomCode').eq(roomCode).return.all())[0]
 
     const getterIsRoomOwner = room?.teacherId === teacherId
-    const getterIsStudent = room?.students.findIndex((student) => studentId === student.split('/')[0]) !== -1
+    const getterIsStudent = room?.students?.findIndex((student) => studentId === student.split('/')[0]) !== -1
 
     return new Response(
         JSON.stringify({
