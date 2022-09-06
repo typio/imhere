@@ -338,7 +338,7 @@
 <style>
 	.keyboard {
 		user-select: none;
-		margin: 0 8px;
+		margin: 0 4px 20px 4px;
 	}
 
 	.keyboard-row {

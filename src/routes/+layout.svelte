@@ -23,6 +23,3 @@
 <ModeButton />
 
 <slot />
-
-<style>
-</style>

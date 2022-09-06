@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { SvelteToast, toast } from '@zerodevx/svelte-toast';
+
 	let TTLInSeconds = 60 * 15;
 
 	const createRoom = async () => {
@@ -10,13 +12,17 @@
 		});
 
 		let { room } = await res.json();
-		window.location.href = `/${room.roomCode}`;
+		window.location.href = `/@${room.roomCode}`;
 	};
+
+	const options = { intro: { y: 192 } };
 </script>
 
 <svelte:head>
 	<title>Create Room!</title>
 </svelte:head>
+
+<SvelteToast {options} />
 
 <div class="content">
 	<div class="create-btns">
@@ -48,14 +54,25 @@
 		</div>
 		<button
 			class="btn create-btn"
-			on:click={async () => {
-				await createRoom();
+			on:click={() => {
+				createRoom();
+				toast.push('Creating Room!');
 			}}>Create Room</button
 		>
 	</div>
 </div>
 
 <style>
+	:root {
+		--toastContainerTop: 60px;
+		--toastContainerRight: auto;
+		--toastContainerBottom: auto;
+		--toastContainerLeft: calc(50vw - 8rem);
+		--toastColor: #fff;
+		--toastBackground: #f56565;
+		--toastBarBackground: #c53030;
+	}
+
 	.create-btns {
 		margin: 35vh 0 0 0;
 		display: flex;
@@ -69,16 +86,31 @@
 		width: 100%;
 		height: fit-content;
 		justify-content: space-evenly;
-		gap: 10px 5px;
+		gap: 10px 10px;
 		align-items: center;
 	}
 
-	.active-btn {
+	.ttl-btns .btn {
+		background: rgb(102, 14, 29);
+		color: gray;
+		width: 100px;
+		height: 40px;
+		font-size: 16px;
+		border-radius: 8px;
+	}
+
+	.ttl-btns .active-btn {
 		background: rgb(223, 37, 68);
 		color: #fff;
 	}
 
 	.create-btn {
-		margin: 0 auto 20vh auto;
+		background: linear-gradient(145deg, #f72585, #b5179e);
+		color: #fff;
+		margin: 0 auto 0 auto;
+		width: 160px;
+		height: 60px;
+		font-size: 20px;
+		border-radius: 10px;
 	}
 </style>

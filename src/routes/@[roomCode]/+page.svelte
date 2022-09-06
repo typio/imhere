@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { goto, invalidateAll } from '$app/navigation';
 
-	import type { PageData } from './$types';
+	import type { PageData } from '../../../.svelte-kit/types/src/routes/[roomCode]/$types';
 
 	export let data: PageData;
 
@@ -85,6 +85,7 @@
 				class="btn clip-btn"
 				on:click={() => {
 					navigator.clipboard.writeText(
+						// @ts-ignore
 						data?.room?.students.map((student) => student.split('/')[1])
 					);
 				}}>Copy Names to Clipboard</button
@@ -93,6 +94,7 @@
 				class="btn save-btn"
 				on:click={() => {
 					downloadToFile(
+						// @ts-ignore
 						data?.room?.students.map((student) => student.split('/')[1]),
 						`Attendance-${new Date().toLocaleString('en-US')}`,
 						'text/plain'
@@ -105,7 +107,7 @@
 				max-width: 100%;
 			}
 		</style>
-	{:else if data?.isStudent === true}
+	{:else if data?.isStudent === true && data?.exists === true}
 		<h2 class="msg">You've successfully joined the room!</h2>
 	{:else}
 		<h2 class="msg">This room has expired</h2>

@@ -161,7 +161,7 @@
 						failedSumbit = false;
 					}, 1000);
 				} else {
-					window.location.href = `/${code.join('')}`;
+					window.location.href = `/@${code.join('')}`;
 				}
 			}}>Here!</button
 		>
