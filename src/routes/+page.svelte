@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { SvelteToast, toast } from '@zerodevx/svelte-toast';
+
 	import { browser } from '$app/environment';
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import { codeLength } from '$lib/helper';
@@ -31,6 +33,8 @@
 	};
 
 	const submitHere = async (): Promise<boolean> => {
+		toast.push('Joining Room...');
+
 		const res = await fetch(`${$page.url.origin}/create/room`, {
 			method: 'PATCH',
 			body: JSON.stringify({
@@ -42,6 +46,8 @@
 		if (room?.roomCode !== undefined) return true;
 		else return false;
 	};
+
+	const options = { intro: { y: -50 }, dismissable: false, initial: 0, next: 1 };
 </script>
 
 <svelte:head>
@@ -117,6 +123,10 @@
 	}}
 />
 
+<div class="wrap">
+	<SvelteToast {options} />
+</div>
+
 <div class="content">
 	{#if keyboardType === 'digit'}
 		<div class="code-entry">
@@ -180,6 +190,22 @@
 </div>
 
 <style>
+	:root {
+		--toastContainerTop: 60px;
+		--toastContainerRight: auto;
+		--toastContainerBottom: auto;
+		--toastContainerLeft: calc(50vw - 8rem);
+		--toastColor: #000;
+		--toastBackground: #f1f1f1;
+		--toastBarBackground: #c53030;
+	}
+
+	.wrap {
+		font-size: 1rem;
+		font-weight: 500;
+		text-align: center;
+	}
+
 	h1 {
 		width: 100%;
 		font-size: 2rem;

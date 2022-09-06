@@ -4,6 +4,8 @@
 	let TTLInSeconds = 60 * 15;
 
 	const createRoom = async () => {
+		toast.push('Creating Room!');
+
 		const res = await fetch('/create/room', {
 			method: 'POST',
 			body: JSON.stringify({
@@ -12,17 +14,20 @@
 		});
 
 		let { room } = await res.json();
+		toast.pop();
 		window.location.href = `/@${room.roomCode}`;
 	};
 
-	const options = { intro: { y: 192 } };
+	const options = { intro: { y: -50 }, dismissable: false, initial: 0, next: 1 };
 </script>
 
 <svelte:head>
 	<title>Create Room!</title>
 </svelte:head>
 
-<SvelteToast {options} />
+<div class="wrap">
+	<SvelteToast {options} />
+</div>
 
 <div class="content">
 	<div class="create-btns">
@@ -54,9 +59,8 @@
 		</div>
 		<button
 			class="btn create-btn"
-			on:click={() => {
+			on:click={async () => {
 				createRoom();
-				toast.push('Creating Room!');
 			}}>Create Room</button
 		>
 	</div>
@@ -68,9 +72,15 @@
 		--toastContainerRight: auto;
 		--toastContainerBottom: auto;
 		--toastContainerLeft: calc(50vw - 8rem);
-		--toastColor: #fff;
-		--toastBackground: #f56565;
+		--toastColor: #000;
+		--toastBackground: #f1f1f1;
 		--toastBarBackground: #c53030;
+	}
+
+	.wrap {
+		font-size: 1rem;
+		font-weight: 500;
+		text-align: center;
 	}
 
 	.create-btns {

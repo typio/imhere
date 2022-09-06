@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	// @ts-ignore
 	import { goto, invalidateAll } from '$app/navigation';
 
 	import type { PageData } from '../../../.svelte-kit/types/src/routes/[roomCode]/$types';
