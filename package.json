@@ -18,6 +18,7 @@
 		"@sveltejs/kit": "1.0.0-next.469",
 		"@types/bad-words": "^3.0.1",
 		"@types/cookie": "^0.5.1",
+		"@types/gtag.js": "^0.0.11",
 		"@types/uuid": "^8.3.4",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",

@@ -2,7 +2,8 @@
 	import '../app.css';
 	import { browser } from '$app/environment';
 
-	import ModeButton from '$lib/components/ModeButton.svelte';
+	import Analytics from '$lib/components/Analytics.svelte';
+	import HeaderButtons from '$lib/components/HeaderButtons.svelte';
 
 	const appHeight = () => {
 		const doc = document.documentElement;
@@ -20,6 +21,8 @@
 	}}
 />
 
-<ModeButton />
+<Analytics />
+
+<HeaderButtons />
 
 <slot />
