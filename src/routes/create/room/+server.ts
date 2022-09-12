@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 import * as cookie from 'cookie'
+import Filter from 'bad-words'
 
 import { roomRepository } from '$lib/db'
 import { codeLength } from '$lib/helper'
@@ -89,6 +90,12 @@ export const POST: RequestHandler = async ({ request }) => {
 
 export const PATCH: RequestHandler = async ({ request }) => {
     const { code, name } = await request.json()
+
+    const filter = new Filter()
+    if (name.replace(' ', '').length === 0) {
+        return new Response(JSON.stringify({ message: "Name must have characters" }), { status: 400 })
+    } else if (filter.isProfane(name))
+        return new Response(JSON.stringify({ message: "Name can't be profane" }), { status: 400 })
 
     const studentId = cookie.parse(request.headers.get('cookie') || '').studentId
 

@@ -1,6 +1,6 @@
 <div class="content">
 	<div>
-		<h2>For help or inquiries</h2>
+		<h2>For help or feedback</h2>
 		<h1>Contact <a href="mailto:me@tohuber.com">me@tohuber.com</a></h1>
 	</div>
 </div>

@@ -52,6 +52,11 @@ body {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
 }
 
+.pink-btn {
+	background: linear-gradient(145deg, #f72585, #b5179e);
+		color: #fff;
+}
+
 .btn:active {
 	filter: brightness(85%);
 }

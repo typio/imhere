@@ -16,6 +16,7 @@
 		"@playwright/test": "^1.25.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "1.0.0-next.469",
+		"@types/bad-words": "^3.0.1",
 		"@types/cookie": "^0.5.1",
 		"@types/uuid": "^8.3.4",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
@@ -36,6 +37,7 @@
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/adapter-vercel": "^1.0.0-next.71",
+		"bad-words": "^3.0.4",
 		"cookie": "^0.5.0",
 		"redis-om": "^0.3.6",
 		"uuid": "^8.3.2"

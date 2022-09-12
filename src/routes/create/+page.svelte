@@ -58,7 +58,7 @@
 			>
 		</div>
 		<button
-			class="btn create-btn"
+			class="btn create-btn pink-btn"
 			on:click={async () => {
 				createRoom();
 			}}>Create Room</button
@@ -75,6 +75,7 @@
 		--toastColor: #000;
 		--toastBackground: #f1f1f1;
 		--toastBarBackground: #c53030;
+		--toastBorderRadius: 0.4rem;
 	}
 
 	.wrap {
@@ -115,8 +116,6 @@
 	}
 
 	.create-btn {
-		background: linear-gradient(145deg, #f72585, #b5179e);
-		color: #fff;
 		margin: 0 auto 0 auto;
 		width: 160px;
 		height: 60px;

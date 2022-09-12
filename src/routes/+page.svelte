@@ -33,7 +33,8 @@
 	};
 
 	const submitHere = async (): Promise<boolean> => {
-		toast.push('Joining Room...');
+		toast.pop(0);
+		toast.push('Joining Room...', { target: 'joining' });
 
 		const res = await fetch(`${$page.url.origin}/create/room`, {
 			method: 'PATCH',
@@ -44,7 +45,11 @@
 		});
 		const room = await res.json();
 		if (room?.roomCode !== undefined) return true;
-		else return false;
+		else {
+			toast.pop(0);
+			toast.push(room.message);
+			return false;
+		}
 	};
 
 	const options = { intro: { y: -50 }, dismissable: false, initial: 0, next: 1 };
@@ -162,11 +167,13 @@
 			</p>
 		</div>
 		<button
-			class="btn here-btn {failedSumbit ? 'shaker' : ''}"
+			class="btn here-btn pink-btn {failedSumbit ? 'shaker' : ''}"
 			tabindex="0"
 			on:click={async () => {
 				if (!(await submitHere())) {
 					failedSumbit = true;
+					// @ts-ignore
+					toast.pop((i) => i.target !== 'joining');
 					setTimeout(() => {
 						failedSumbit = false;
 					}, 1000);
@@ -198,6 +205,7 @@
 		--toastColor: #000;
 		--toastBackground: #f1f1f1;
 		--toastBarBackground: #c53030;
+		--toastBorderRadius: 0.4rem;
 	}
 
 	.wrap {
@@ -285,9 +293,7 @@
 	}
 
 	.here-btn {
-		background: linear-gradient(145deg, #f72585, #b5179e);
 		margin: 50px auto 400px auto;
-		color: #f1f1f1;
 		font-size: 1.4rem;
 		font-weight: 500;
 		width: 100px;
