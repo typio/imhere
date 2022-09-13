@@ -21,11 +21,22 @@
 				muted = true;
 				volumeLevel = 1;
 			}
+			if (muted) audio?.pause();
 		}
 	}
 
 	let showVolume = false;
+
+	let winWidth: number;
+	let winHeight: number;
+	let windowSmallerDim: number;
+
+	$: {
+		windowSmallerDim = Math.min(winWidth, winHeight);
+	}
 </script>
+
+<svelte:window bind:outerWidth={winWidth} bind:outerHeight={winHeight} />
 
 {#if $page.url.pathname === '/'}
 	<button
@@ -79,11 +90,12 @@
 		}}
 	/>
 
+	<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 	<div
 		class="sound-control"
 		style="width:{showVolume && !muted ? '160px' : '40px'}"
-		on:mousemove={() => {
-			showVolume = true;
+		on:mouseover={() => {
+			if (windowSmallerDim > 480) showVolume = true;
 		}}
 		on:mouseleave={() => {
 			showVolume = false;
@@ -93,13 +105,16 @@
 			class="btn"
 			on:click={() => {
 				muted = !muted;
-				audio.play();
+				if (muted) audio.pause();
+				else audio.play();
 				audio.volume = volumeLevel / 20;
 			}}
 		>
 			<img
 				src={muted === true
 					? mute
+					: windowSmallerDim < 480
+					? volume_max
 					: volumeLevel < 5
 					? volume_lowest
 					: volumeLevel < 15

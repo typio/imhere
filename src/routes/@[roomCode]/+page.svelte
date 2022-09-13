@@ -67,7 +67,7 @@
 			{#each data?.room?.students?.reverse() as student}
 				<li
 					class="student-name"
-					on:click={async () => {
+					on:mousedown={async () => {
 						await fetch('/create/room', {
 							method: 'DELETE',
 							body: JSON.stringify({
@@ -97,7 +97,7 @@
 					downloadToFile(
 						// @ts-ignore
 						data?.room?.students.map((student) => student.split('/')[1]),
-						`Attendance-${new Date().toLocaleString('en-US')}`,
+						`Attendance-${new Date().toLocaleString('en-US')}.txt`,
 						'text/plain'
 					);
 				}}>Save Names to Text File</button
