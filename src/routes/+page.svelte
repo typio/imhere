@@ -60,7 +60,7 @@
 </svelte:head>
 
 <svelte:window
-	on:keydown={(e) => {
+	on:keydown={async (e) => {
 		let { key } = e;
 		if (keyboardType === 'digit') {
 			if (!isNaN(parseInt(key))) {
@@ -122,6 +122,17 @@
 					}
 				} else {
 					name += key.toLowerCase();
+				}
+			} else if (key === 'Enter') {
+				if (!(await submitHere())) {
+					failedSumbit = true;
+					// @ts-ignore
+					toast.pop((i) => i.target !== 'joining');
+					setTimeout(() => {
+						failedSumbit = false;
+					}, 1000);
+				} else {
+					window.location.href = `/@${code.join('')}`;
 				}
 			}
 		}
@@ -293,7 +304,7 @@
 	}
 
 	.here-btn {
-		margin: 50px auto 400px auto;
+		margin: 0 auto;
 		font-size: 1.4rem;
 		font-weight: 500;
 		width: 100px;
@@ -301,15 +312,12 @@
 	}
 
 	.keyboard-wrapper {
-		max-width: 540px;
-		margin-left: auto;
-		margin-right: auto;
-		left: 0;
-		right: 0;
-		bottom: 0;
+		width: 540px;
+		margin: 0 auto;
 		text-align: center;
-
-		position: absolute;
+		place-self: end;
+		z-index: 999;
+		/*  */
 	}
 
 	.shaker:nth-of-type(1) {

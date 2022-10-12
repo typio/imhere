@@ -1,3 +1,6 @@
+<script>
+</script>
+
 <div class="content">
 	<div>
 		<h2>For help or feedback</h2>
@@ -9,7 +12,7 @@
 	h1 {
 		width: 100%;
 		text-align: center;
-        margin: 0 0 0 0;
+		margin: 0 0 0 0;
 	}
 
 	h2 {

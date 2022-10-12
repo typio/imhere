@@ -14,6 +14,10 @@
 <svelte:head>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-5V8TM8BSPE">
 	</script>
+	<script
+		async
+		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9012705634493266"
+		crossorigin="anonymous"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 
