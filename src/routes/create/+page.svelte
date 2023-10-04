@@ -119,7 +119,8 @@
 		margin: 0 auto 0 auto;
 		width: 160px;
 		height: 60px;
-		font-size: 20px;
+		font-size: 18px;
 		border-radius: 10px;
+		box-shadow: 0 4px 6px rgba(169, 28, 51, 0.3);
 	}
 </style>

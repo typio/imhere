@@ -57,7 +57,12 @@
 
 <div class="content">
 	{#if data?.room !== undefined}
-		<h1 class="room-code">{data?.room.roomCode}</h1>
+		<div class="room-code-container">
+			<h1 class="room-code">{data?.room.roomCode}</h1>
+			<h2 class="join-text">
+				Join from <a href="https://imhere.in" style="color: #f1f1f1">imhere.in</a>
+			</h2>
+		</div>
 		<h2 class="room-time">
 			{(msRemaining > 3.6 * 10 ** 6 ? hoursRemaining + 'h ' : '') +
 				(msRemaining > 6 * 10 ** 4 ? minutesRemaining + 'm ' : '') +
@@ -122,19 +127,23 @@
 		text-align: center;
 	}
 
+	.room-code-container {
+		flex: 1;
+		margin-top: 80px;
+	}
 	.room-code {
 		font-size: 16vmin;
-		line-height: 18vmin;
-		height: 18vmin;
-		margin: 70px 0 0 0;
+		margin: 0;
+	}
+	.join-text {
+		font-size: 1.6rem;
+		margin: 20px 0 0 0;
 	}
 
 	.room-time {
 		font-weight: 500;
 		font-size: 5vmin;
-		line-height: 6vmin;
-		height: 6vmin;
-		margin: 0;
+		margin-top: 20px;
 	}
 
 	.student-names {

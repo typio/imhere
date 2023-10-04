@@ -164,7 +164,7 @@
 		width: 40px;
 		background-color: #f1f1f1;
 		border-radius: 20px;
-		box-shadow: 1px 2px 7px #333;
+		box-shadow: 0 4px 6px rgba(86, 11, 173, 1), 0 1px 3px rgba(86, 11, 173, 1);
 	}
 
 	.sound-control .btn {
